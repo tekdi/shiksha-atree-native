@@ -1,4 +1,4 @@
-package com.pratham.learning
+package com.sunbird.kef
 
 import android.app.Application
 import com.facebook.react.PackageList

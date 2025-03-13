@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 <!--error with below line for android greater than 8 
-package="com.pratham.learning"
+package="com.sunbird.kef"
 -->
 
     <uses-permission android:name="android.permission.INTERNET" />

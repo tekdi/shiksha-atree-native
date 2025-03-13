@@ -1,5 +1,5 @@
 {
-  "name": "learnerapp",
+  "name": "shikshaapp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "prettier-check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "android:launch": " cd .. && adb shell am start -n com.pratham.learning/.MainActivity",
+    "android:launch": " cd .. && adb shell am start -n com.sunbird.kef/.MainActivity",
     "android:dev": "ENVFILE=.env.dev && cd android && ./gradlew assembleDevDebug && ./gradlew installDevDebug -PreactNativeDevServerPort=8081 && npm run android:launch",
     "android:uat": "ENVFILE=.env.uat && cd android && ./gradlew assembleUatDebug && ./gradlew installUatDebug -PreactNativeDevServerPort=8081 && npm run android:launch",
     "android:prod": "ENVFILE=.env.prod && cd android && ./gradlew assembleProdDebug && ./gradlew installProdDebug -PreactNativeDevServerPort=8081 && npm run android:launch",

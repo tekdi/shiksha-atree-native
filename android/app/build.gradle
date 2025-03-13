@@ -90,9 +90,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.pratham.learning"
+    namespace "com.sunbird.kef"
     defaultConfig {
-        applicationId "com.pratham.learning"
+        applicationId "com.sunbird.kef"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 77
