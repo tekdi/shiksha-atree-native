@@ -76,16 +76,16 @@ const Profile = () => {
   };
 
   const fetchData = async () => {
-    const data = await getStudentForm();
-    setDataInStorage('studentForm', JSON.stringify(data?.fields));
+    // const data = await getStudentForm();
+    // setDataInStorage('studentForm', JSON.stringify(data?.fields));
     const tenantId = await getDataFromStorage('userTenantid');
 
-    const studentForm = data?.fields;
-    const programFormData = await getStudentForm(tenantId);
+    // const studentForm = data?.fields;
+    // const programFormData = await getStudentForm(tenantId);
 
-    const studentProgramForm = programFormData?.fields;
-    setDataInStorage('studentProgramForm', JSON.stringify(studentProgramForm));
-    const mergedForm = [...studentForm, ...studentProgramForm];
+    // const studentProgramForm = programFormData?.fields;
+    // setDataInStorage('studentProgramForm', JSON.stringify(studentProgramForm));
+    // const mergedForm = [...studentForm, ...studentProgramForm];
     const user_id = await getDataFromStorage('userId');
     const profileData = await getProfileDetails({
       userId: user_id,
@@ -116,15 +116,15 @@ const Profile = () => {
         obj[key] = finalResult[key];
         return obj;
       }, {});
-    const requiredLabels = mergedForm?.map((item) => {
-      return { label: item?.label, name: item?.name };
-    });
-    const customFields = finalResult?.customFields;
-    const userDetails = createNewObject(
-      customFields,
-      requiredLabels,
-      (profileView = true)
-    );
+    // const requiredLabels = mergedForm?.map((item) => {
+    //   return { label: item?.label, name: item?.name };
+    // });
+    // const customFields = finalResult?.customFields;
+    // const userDetails = createNewObject(
+    //   customFields,
+    //   requiredLabels,
+    //   (profileView = true)
+    // );
 
     // Extract state, district, and block
     const locationData = {
@@ -250,7 +250,9 @@ const Profile = () => {
           >
             <GlobalText style={[globalStyles.subHeading, { fontWeight: 700 }]}>
               {capitalizeName(
-                `${userData?.firstName} ${userData?.lastName ? userData?.lastName : ''}`
+                `${userData?.firstName} ${
+                  userData?.lastName ? userData?.lastName : ''
+                }`
               )}
             </GlobalText>
             <View
@@ -281,7 +283,7 @@ const Profile = () => {
           {/* <NoCertificateBox userType={userType} /> */}
           <View style={{ backgroundColor: '#FFF8F2', paddingVertical: 20 }}>
             <View style={styles.viewBox}>
-              {userDetails?.map((item, key) => {
+              {/* {userDetails?.map((item, key) => {
                 return (
                   <View key={key} style={{ paddingVertical: 10 }}>
                     <Label text={`${t(item?.name)}`} />
@@ -289,8 +291,8 @@ const Profile = () => {
                   </View>
                 );
               })}
-
-              {/* <View>
+*/}
+              <View>
                 <Label text={`${t('email')}`} />
                 <TextField text={`${userData?.email || '-'}   `} />
               </View>
@@ -298,7 +300,7 @@ const Profile = () => {
               <View>
                 <Label text={`${t('class')} (${t('last_passed_grade')})`} />
                 <TextField text={userDetails?.CLASS_OR_LAST_PASSED_GRADE} />
-              </View> 
+              </View>
               <View>
                 <Label text={`${t('dob')} `} />
 
@@ -314,12 +316,14 @@ const Profile = () => {
                 <Label text={`${t('location')}`} />
                 {userDetails?.STATE ? (
                   <TextField
-                    text={`${userDetails?.STATE || '-'},  ${userDetails?.DISTRICT || ''}, ${userDetails?.BLOCK || ''}`}
+                    text={`${userDetails?.STATE || '-'},  ${
+                      userDetails?.DISTRICT || ''
+                    }, ${userDetails?.BLOCK || ''}`}
                   />
                 ) : (
                   <TextField text={'-'} />
                 )}
-              </View> */}
+              </View>
             </View>
           </View>
 

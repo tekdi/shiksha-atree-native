@@ -182,7 +182,7 @@ const OtherSettings = ({ route }) => {
             <></>
           ) : (
             <>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={[globalStyles.flexrow, styles.borderColor]}
                 onPress={() => {
                   navigation.navigate('ProfileUpdateScreen');
@@ -262,7 +262,7 @@ const OtherSettings = ({ route }) => {
                     size={30}
                   />
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </>
           )}
           <TouchableOpacity

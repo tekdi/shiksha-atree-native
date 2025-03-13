@@ -126,6 +126,7 @@ const Courses = () => {
     const fetch = async () => {
       // const cohort_id = await getDataFromStorage('cohortId');
       let userType = await getDataFromStorage('userType');
+      console.log('userType', userType);
 
       let isYouthnet = userType == 'youthnet' ? true : false;
       setYouthnet(isYouthnet);
@@ -135,8 +136,8 @@ const Courses = () => {
         userType === 'youthnet'
           ? { frameworkId: 'youthnet-framework', channelId: 'youthnet-channel' }
           : userType === 'scp'
-            ? { frameworkId: 'scp-framework', channelId: 'scp-channel' }
-            : { frameworkId: 'pos-framework', channelId: 'pos-channel' };
+          ? { frameworkId: 'scp-framework', channelId: 'scp-channel' }
+          : { frameworkId: 'pos-framework', channelId: 'pos-channel' };
       setInstant(instant);
     };
     fetch();
@@ -216,8 +217,8 @@ const Courses = () => {
       userType === 'youthnet'
         ? { frameworkId: 'youthnet-framework', channelId: 'youthnet-channel' }
         : userType === 'scp'
-          ? { frameworkId: 'scp-framework', channelId: 'scp-channel' }
-          : { frameworkId: 'pos-framework', channelId: 'pos-channel' };
+        ? { frameworkId: 'scp-framework', channelId: 'scp-channel' }
+        : { frameworkId: 'pos-framework', channelId: 'pos-channel' };
 
     let data = await courseListApi_New({
       searchText,
@@ -228,6 +229,8 @@ const Courses = () => {
 
     try {
       const contentList = data?.content || [];
+      console.log('contentList', JSON.stringify(data));
+
       let courseList = contentList.map((item) => item?.identifier);
 
       let userId = await getDataFromStorage('userId');
@@ -401,7 +404,7 @@ const Courses = () => {
                   order={6}
                   name="start"
                 >
-                  <CopilotView style={{ width: '70%' }}>
+                  <CopilotView style={{ width: '100%' }}>
                     <View>
                       <CustomSearchBox
                         setSearchText={setSearchText}
@@ -412,7 +415,7 @@ const Courses = () => {
                     </View>
                   </CopilotView>
                 </CopilotStep>
-
+                {/* 
                 <TouchableOpacity
                   style={[
                     globalStyles.flexrow,
@@ -438,7 +441,7 @@ const Courses = () => {
                     color="#000"
                     // style={{ marginLeft: 10 }}
                   />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
 
               <SyncCard doneSync={fetchData} />

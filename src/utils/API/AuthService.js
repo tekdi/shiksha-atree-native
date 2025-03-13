@@ -407,7 +407,8 @@ export const courseListApi_New = async ({
   const payload = {
     request: {
       filters: {
-        channel: instant?.channelId,
+        // channel: instant?.channelId,
+        channel: 'kef-channel',
         // program:
         //   userType == 'scp'
         //     ? ['secondchance', 'Second Chance', 'SCP']
@@ -497,8 +498,8 @@ export const contentListApi_Pratham = async ({
   let payload = {
     request: {
       filters: {
-        channel: instant?.channelId,
-
+        // channel: instant?.channelId,
+        channel: 'kef-channel',
         primaryCategory: ['Learning Resource', 'Practice Question Set'],
         visibility: ['Default', 'Parent'],
       },
@@ -1814,7 +1815,9 @@ export const CourseEnrollStatus = async ({ course_id }) => {
     courseId: course_id,
   };
   try {
-    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(payload)}' ${url}`;
+    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(
+      payload
+    )}' ${url}`;
 
     console.log('cURL Command:', curlCommand);
 
@@ -1854,7 +1857,9 @@ export const courseEnroll = async ({ course_id }) => {
     courseId: course_id,
   };
   try {
-    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(payload)}' ${url}`;
+    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(
+      payload
+    )}' ${url}`;
 
     console.log('cURL Command:', curlCommand);
 
@@ -1883,7 +1888,9 @@ export const updateCourseStatus = async ({ course_id }) => {
     courseId: course_id,
   };
   try {
-    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(payload)}' ${url}`;
+    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(
+      payload
+    )}' ${url}`;
 
     console.log('cURL Command:', curlCommand);
 
@@ -1907,7 +1914,9 @@ export const issueCertificate = async ({ payload }) => {
     .join(' ');
 
   try {
-    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(payload)}' ${url}`;
+    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(
+      payload
+    )}' ${url}`;
 
     console.log('cURL Command:', curlCommand);
 
@@ -1937,7 +1946,9 @@ export const viewCertificate = async ({ certificateId }) => {
   };
 
   try {
-    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(payload)}' ${url}`;
+    const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(
+      payload
+    )}' ${url}`;
 
     console.log('cURL Command:', curlCommand);
 
@@ -2003,7 +2014,9 @@ export const enrollInterest = async () => {
     village: customFields?.VILLAGE ? customFields?.VILLAGE : '',
     blood_group: '',
   };
-  const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(payload)}' ${url}`;
+  const curlCommand = `curl -X POST ${headersString} -d '${JSON.stringify(
+    payload
+  )}' ${url}`;
   console.log('cURL Command:', curlCommand);
   try {
     // Make the actual request
