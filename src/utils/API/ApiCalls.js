@@ -319,10 +319,11 @@ export const telemetryTracking = async (telemetryObject) => {
     const url = EndUrls.telemetryTracking;
 
     let data = JSON.stringify(payload);
-    // console.log('url', url);
-    // console.log('data', data);
 
-    let api_response = null;
+    // Print cURL command in console
+    console.log(`curl -X POST "${url}" \\
+    -H "Content-Type: application/json" \\
+    --data '${data}'`);
 
     let config = {
       method: 'post',
@@ -333,18 +334,17 @@ export const telemetryTracking = async (telemetryObject) => {
       },
       data: data,
     };
-    // console.log('config', config);
-    //console.log('data', data);
 
+    let api_response = null;
     await axios
       .request(config)
       .then((response) => {
-        //console.log(JSON.stringify(response.data));
         api_response = { response: response.data };
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log('error==>', error);
       });
+
     return api_response;
   } catch (error) {
     throw new Error(
@@ -539,7 +539,7 @@ export const CourseInProgress = async () => {
         .join('\n')} 
       --data '${data}'`;
 
-    console.log('Generated cURL Command:', curlCommand);
+    // console.log('Generated cURL Command:', curlCommand);
 
     try {
       const response = await axios.request(config);
