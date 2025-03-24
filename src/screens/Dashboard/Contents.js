@@ -57,6 +57,7 @@ const Contents = () => {
   const scrollViewRef = useRef(null);
   // const [scrollPosition, setScrollPosition] = useState(0);
   const [restoreScroll, setRestoreScroll] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0); // State for re-rendering
 
   // Save scroll position when user scrolls
   const handleScroll = (event) => {
@@ -93,19 +94,18 @@ const Contents = () => {
     setShowExitModal(false); // Close the modal
   };
 
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     setSearchText('');
-  //     // console.log('########## in focus course');
-  //     // setLoading(true);
-  //     //bug fix for not realtime tracking
-  //     //fetchData();
-  //     setTimeout(() => {
-  //       // Code to run after 1 second
-  //       // fetchData();
-  //     }, 500); // 1000 milliseconds = 1 second
-  //   }, []) // Make sure to include the dependencies
-  // );
+  useFocusEffect(
+    useCallback(() => {
+      setSearchText('');
+      console.log('########## in focus course');
+      setLoading(true);
+      //bug fix for not realtime tracking
+      const append = offset > 0 ? true : false;
+      fetchData(offset, append);
+      setRefreshKey((prev) => prev + 1); // Force component reload
+    }, []) // Make sure to include the dependencies
+  );
+
   useEffect(() => {
     const logEvent = async () => {
       const obj = {
@@ -120,6 +120,8 @@ const Contents = () => {
     logEvent();
   }, []);
 
+  // console.log('offset', offset);
+
   const fetchData = async (offset, append = false) => {
     setLoading(true);
     console.log('refreshed');
@@ -128,8 +130,8 @@ const Contents = () => {
       userType === 'youthnet'
         ? { frameworkId: 'youthnet-framework', channelId: 'youthnet-channel' }
         : userType === 'scp'
-          ? { frameworkId: 'scp-framework', channelId: 'scp-channel' }
-          : { frameworkId: 'pos-framework', channelId: 'pos-channel' };
+        ? { frameworkId: 'scp-framework', channelId: 'scp-channel' }
+        : { frameworkId: 'pos-framework', channelId: 'pos-channel' };
 
     const data = await contentListApi_Pratham({ searchText, instant, offset });
     //found content progress
@@ -150,8 +152,13 @@ const Contents = () => {
       // console.log('########## contentList', contentList);
       //get course track data
       let userId = await getDataFromStorage('userId');
+      // console.log('userId', userId);
+
       let course_track_data = await courseTrackingStatus(userId, contentIdList);
-      //console.log('########## course_track_data', course_track_data?.data);
+      console.log(
+        '########## course_track_data',
+        JSON.stringify(course_track_data?.data)
+      );
       let courseTrackData = [];
       if (course_track_data?.data) {
         courseTrackData =
@@ -159,13 +166,16 @@ const Contents = () => {
             ?.course || [];
       }
 
-      setTrackData(courseTrackData);
+      // setTrackData(courseTrackData);
+      setTrackData((prevData) => [...prevData, ...(courseTrackData || [])]);
+
+      // setTrackData(courseTrackData);
       // console.log('########## courseTrackData', courseTrackData);
-      // console.log('##########');
+      // console.log('##########===>', trackData);
       const result = JSON.parse(await getDataFromStorage('profileData'));
       setUserInfo(result?.getUserDetails);
-      console.log('data', JSON.stringify(data));
-      console.log('contentList', JSON.stringify(contentList));
+      // console.log('data', JSON.stringify(data));
+      // console.log('contentList', JSON.stringify(contentList));
       setCount(data?.count);
       // setData(contentList);
       setData((prevData) =>
@@ -222,7 +232,10 @@ const Contents = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+    <SafeAreaView
+      key={refreshKey}
+      style={{ flex: 1, backgroundColor: 'white' }}
+    >
       <SecondaryHeader logo />
       <ScrollView
         nestedScrollEnabled

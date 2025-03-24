@@ -265,7 +265,7 @@ const OtherSettings = ({ route }) => {
               </TouchableOpacity> */}
             </>
           )}
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={[globalStyles.flexrow, styles.borderColor]}
             onPress={openInAppBrowser}
           >
@@ -289,8 +289,8 @@ const OtherSettings = ({ route }) => {
                 size={30}
               />
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity
             style={[globalStyles.flexrow, styles.borderColor]}
             onPress={() => {
               setModalVisible(true);
@@ -316,8 +316,8 @@ const OtherSettings = ({ route }) => {
                 size={30}
               />
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity
             style={[
               globalStyles.flexrow,
               styles.borderColor,
@@ -347,7 +347,7 @@ const OtherSettings = ({ route }) => {
                 size={30}
               />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <TouchableOpacity
           style={[globalStyles.flexrow, styles.logout]}

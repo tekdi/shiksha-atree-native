@@ -11,6 +11,8 @@ import GlobalText from '@components/GlobalText/GlobalText';
 const StatusCardIcon = ({ status }) => {
   const { t } = useTranslation();
 
+  // console.log('status', status);
+
   if (status === 'completed') {
     return <View style={styles.complete} />;
   } else if (status === 'inprogress') {
