@@ -13,8 +13,8 @@ import Coursesunfilled from '../../assets/images/png/Coursesunfilled.png';
 import ProfileStack from './ProfileStack';
 import { getDataFromStorage } from '../../utils/JsHelper/Helper';
 import { CopilotStep, useCopilot, walkthroughable } from 'react-native-copilot';
-import explore_FILL from '@src/assets/images/png/explore_FILL.png';
-import explore_UNFILLED from '@src/assets/images/png/explore_UNFILLED.png';
+import content from '@src/assets/images/png/content.png';
+import content2 from '@src/assets/images/png/content2.png';
 
 const Tab = createBottomTabNavigator();
 const WalkthroughableView = walkthroughable(View); // Wrap Image component
@@ -109,7 +109,7 @@ const TabScreen = () => {
             ),
             tabBarIcon: ({ focused }) => (
               <Image
-                source={focused ? profile_filled : profile}
+                source={focused ? content2 : content}
                 style={{ width: 30, height: 30 }}
               />
             ),

@@ -297,7 +297,7 @@ const ContentCard = ({ item, index, course_id, unit_id, TrackData }) => {
                 numberOfLines={4}
                 ellipsizeMode="tail"
               >
-                {item?.identifier}
+                {item?.name}
               </GlobalText>
               <StatusCardIcon status={trackStatus} />
             </View>
