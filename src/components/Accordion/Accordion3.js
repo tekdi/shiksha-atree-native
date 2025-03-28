@@ -26,11 +26,13 @@ const Accordion3 = ({ title, children, index, openDropDown, description }) => {
     >
       {title && (
         <TouchableOpacity
+          numberOfLines={4}
+          ellipsizeMode="tail"
           style={[
             globalStyles.flexrow,
             {
               justifyContent: 'space-between',
-              padding: 10,
+              padding: 15,
               backgroundColor: '#F7ECDF',
             },
           ]}

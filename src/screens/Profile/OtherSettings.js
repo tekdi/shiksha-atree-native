@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import {
   Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -137,7 +138,7 @@ const OtherSettings = ({ route }) => {
   return (
     <>
       <SecondaryHeader logo />
-      <SafeAreaView style={globalStyles.container}>
+      <ScrollView style={globalStyles.container}>
         <BackHeader title={'settings'} />
         <View style={styles.view}>
           <TouchableOpacity
@@ -428,7 +429,7 @@ const OtherSettings = ({ route }) => {
             </View>
           </View>
         </Modal>
-      </SafeAreaView>
+      </ScrollView>
     </>
   );
 };

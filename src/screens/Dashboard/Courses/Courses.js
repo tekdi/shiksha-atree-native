@@ -338,7 +338,7 @@ const Courses = () => {
             <>
               <View style={styles.view2}>
                 <Image source={wave} resizeMode="contain" />
-                <GlobalText style={styles.text2}>
+                <GlobalText style={globalStyles.h6}>
                   {t('welcome')},
                   {capitalizeName(
                     `${userInfo?.[0]?.firstName} ${userInfo?.[0]?.lastName}!`
@@ -354,7 +354,7 @@ const Courses = () => {
                 <View>
                   <GlobalText
                     style={[
-                      globalStyles.heading2,
+                      globalStyles.h4,
                       { fontWeight: 'bold', color: '#78590C' },
                     ]}
                   >
@@ -368,7 +368,9 @@ const Courses = () => {
                       marginTop: 10,
                     }}
                   >
-                    <GlobalText style={[globalStyles.text]}>
+                    <GlobalText
+                      style={[globalStyles.text, { color: '#1F1B13' }]}
+                    >
                       {t(
                         'you_can_boost_your_skills_and_unlock_new_job_opportunities_with_our_L2_course'
                       )}
@@ -391,10 +393,7 @@ const Courses = () => {
                 </View>
               )}
               <GlobalText
-                style={[
-                  globalStyles.heading2,
-                  { fontWeight: 'bold', color: '#78590C' },
-                ]}
+                style={[globalStyles.h4, { color: '#78590C', top: 10 }]}
               >
                 {youthnet && t('l1_courses')}
               </GlobalText>
@@ -410,7 +409,7 @@ const Courses = () => {
                         setSearchText={setSearchText}
                         searchText={searchText}
                         handleSearch={handleSearch}
-                        placeholder={t('Search Courses')}
+                        placeholder={t('Search...')}
                       />
                     </View>
                   </CopilotView>
