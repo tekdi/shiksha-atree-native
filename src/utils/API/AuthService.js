@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   createNewObject,
   getDataFromStorage,
@@ -8,6 +9,8 @@ import EndUrls from './EndUrls';
 import { get, handleResponseException, patch, post } from './RestClient';
 //for react native config env : dev uat prod
 import Config from 'react-native-config';
+import { Alert } from 'react-native';
+import RNFS from 'react-native-fs';
 
 const getHeaders = async () => {
   const token = await getDataFromStorage('Accesstoken');
@@ -2028,5 +2031,40 @@ export const enrollInterest = async () => {
     }
   } catch (e) {
     console.log('e', e);
+  }
+};
+
+export const downloadCertificate = async ({
+  certificateId,
+  certificateName,
+}) => {
+  const url = `${EndUrls.downloadCertificate}`; // Define the URL
+  const headers = await getHeaders();
+  // console.log('certificateId', certificateId);
+  const user_id = await getDataFromStorage('userId'); // Ensure this is defined
+
+  const payload = {
+    credentialId: certificateId,
+    templateId: 'cm7nbogii000moc3gth63l863',
+  };
+
+  try {
+    const response = await axios.post(url, payload, {
+      headers: headers || {},
+      responseType: 'arraybuffer', // Ensures we get binary data
+    });
+    const data = response?.request?._response;
+    const base64Data = data; // Base64 string from API
+    const fileName = `${certificateName}_${user_id}.pdf`;
+    const path = `${RNFS.DownloadDirectoryPath}/${fileName}`;
+
+    await RNFS.writeFile(path, base64Data, 'base64');
+    Alert.alert('Success', `PDF saved at ${path}`);
+    console.log('PDF downloaded to:', path);
+    return true;
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+    Alert.alert('Error', 'Failed to download PDF');
+    return true;
   }
 };
