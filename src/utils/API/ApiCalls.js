@@ -498,7 +498,7 @@ export const courseTrackingStatus = async (userId, courseId) => {
       } 
       --data '${data}'`;
 
-    console.log('Generated cURL Command:\n', curlCommand);
+    // console.log('Generated cURL Command:\n', curlCommand);
 
     let api_response = null;
 
