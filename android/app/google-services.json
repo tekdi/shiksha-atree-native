@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "804897806182",
+    "project_id": "shikshaapp-e45b8",
+    "storage_bucket": "shikshaapp-e45b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804897806182:android:6bf939c6d56a5e78cc9aa7",
+        "android_client_info": {
+          "package_name": "com.sunbird.kef"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHlQiMw8ihBehsEmdIl5wsJzbJneqZq-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
